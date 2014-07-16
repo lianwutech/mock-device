@@ -9,7 +9,8 @@
     "url": "https://github.com/Anonyfox/node-webkit-hipster-seed"
   },
   "scripts": {
-    "compiler": "brunch watch -P",
+    "compiler": "brunch watch --server",
+    "builder": "brunch watch -P",
     "test": "karma start test/karma.conf.js",
     "app": "nodewebkit _public",
     "deploy": "grunt"
@@ -34,6 +35,7 @@
     "grunt": "~0.4.2",
     "grunt-node-webkit-builder": "~0.1.14",
     "nodewebkit": "~0.8.4-2",
-    "grunt-cli": "~0.1.11"
+    "grunt-cli": "~0.1.11",
+    "ngmin-uglify-js-brunch": "~1.7.13"
   }
 }

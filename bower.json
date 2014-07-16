@@ -17,10 +17,11 @@
     "angular": "1.2.5",
     "angular-sanitize": "1.2.5",
     "angular-resource": "1.2.5",
-    "angular-route": "1.2.5",
     "angular-cookies": "1.2.5",
     "angular-mocks": "1.2.5",
-    "components-underscore": "~1.5.2"
+    "components-underscore": "~1.5.2",
+    "angular-ui-router": "~0.2.10",
+    "angular-adminui": "git@github.com:merlinran/angular-adminui.git"
   },
   "overrides": {
     "bootstrap-less": {
