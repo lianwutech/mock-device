@@ -36,6 +36,10 @@
     "grunt-node-webkit-builder": "~0.1.14",
     "nodewebkit": "~0.8.4-2",
     "grunt-cli": "~0.1.11",
-    "ngmin-uglify-js-brunch": "~1.7.13"
+    "ngmin-uglify-js-brunch": "~1.7.13",
+    "node-ssdp": "~2.0.1"
+  },
+  "devDependencies": {
+    "karma-nodewebkit-launcher": "0.0.8"
   }
 }

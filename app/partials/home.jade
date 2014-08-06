@@ -1,0 +1,11 @@
+.row
+  .module.col-md-3(ng-repeat="(addr, gateway) in model.gateways")
+    .panel.panel-default
+      .panel-heading
+        {{addr}}
+      .panel-body
+        {{gateway}}
+  .module.col-md-3
+    button.btn.btn-default(style="width: 223px; height: 127px", ui-sref="scan")
+      span.fa.fa-plus
+        查找网关
