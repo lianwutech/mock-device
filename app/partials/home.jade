@@ -1,11 +1,45 @@
 .row
-  .module.col-md-3(ng-repeat="(addr, gateway) in model.gateways")
-    .panel.panel-default
+  .col-md-12
+    .panel.panel-success
       .panel-heading
-        {{addr}}
+        温度传感器
       .panel-body
-        {{gateway}}
-  .module.col-md-3
-    button.btn.btn-default(style="width: 223px; height: 127px", ui-sref="scan")
-      span.fa.fa-plus
-        查找网关
+        .col-md-4
+          温度值：
+          input(ng-model="model.thermometer.value")
+        .col-md-1
+          button.btn.btn-success(ng-hide="model.thermometer.enabled", ng-click="start(model.thermometer)")
+            i.fa.fa-play开始模拟
+          button.btn.btn-warning(ng-hide="!model.thermometer.enabled", ng-click="stop(model.thermometer)")
+            i.fa.fa-stop停止模拟
+  .col-md-12
+    .panel.panel-success
+      .panel-heading
+        告警开关
+      .panel-body
+        .col-md-4
+          状态：{{model.alarm.value}}
+        .col-md-1
+          button.btn.btn-success(ng-hide="model.alarm.enabled", ng-click="start(model.alarm)")
+            i.fa.fa-play开始模拟
+          button.btn.btn-warning(ng-hide="!model.alarm.enabled", ng-click="stop(model.alarm)")
+            i.fa.fa-stop停止模拟
+  .col-md-12
+    .panel.panel-success
+      .panel-heading
+        数据透传
+      .panel-body
+        .col-md-4
+          数据：
+          input(ng-model="model.unvarnished.value")
+        .col-md-1
+          button.btn.btn-success(ng-hide="model.unvarnished.enabled", ng-click="start(model.unvarnished)")
+            i.fa.fa-play开始模拟
+          button.btn.btn-warning(ng-hide="!model.unvarnished.enabled", ng-click="stop(model.unvarnished)")
+            i.fa.fa-stop停止模拟
+  .col-md-12
+    .panel.panel-info
+      .panel-heading
+        日志
+      .panel-body
+        p(ng-repeat="log in logs"){{log}}

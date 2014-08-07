@@ -2,35 +2,64 @@
 angular.module('app.controllers')
   .controller('HomeCtrl', [
     '$scope'
-    '$location'
+    '$timeout'
     '$state'
     '$localStorage'
-    '$rootScope'
+    'mqtt'
 
-    ($scope, $location, $state, $localStorage, $rootScope) ->
+    ($scope, $timeout, $state, $localStorage, mqtt) ->
+      log = (str) ->
+        tm = new Date()
+        str = "#{tm.toTimeString()}\t#{str}"
+        len = $scope.logs.unshift(str)
+        if len > 10 then $scope.logs.pop()
+        console.log str
+
+      $scope.logs = []
       $scope.model = $localStorage
-      if not $scope.model.gateways?
-        $state.go 'scan'
-
-      # Uses the url to determine if the selected
-      # menu item should have the class active.
-      $scope.$location = $location
-      $scope.$watch('$location.path()', (path) ->
-        $scope.activeNavId = path || '/'
+      $scope.model.thermometer ||=
+        id: '1'
+        type: 1501
+        value: 33
+      $scope.model.alarm ||=
+        id: '2'
+        type: 1501
+        value: 'open'
+      mqtt.wait($scope.model.alarm.id, (topic, message)->
+        log "收到消息#{topic}, 内容#{message}"
       )
+      $scope.model.unvarnished ||=
+        id: '3'
+        type: 1501
+        value: '1FAA'
 
-      # getClass compares the current url with the id.
-      # If the current url starts with the id it returns 'active'
-      # otherwise it will return '' an empty string. E.g.
-      #
-      #   # current url = '/products/1'
-      #   getClass('/products') # returns 'active'
-      #   getClass('/orders') # returns ''
-      #
-      $scope.getClass = (id) ->
-        if $scope.activeNavId.substring(0, id.length) == id
-          return 'active'
-        else
-          return ''
+      $scope.devices = [
+        $scope.model.thermometer
+        $scope.model.alarm
+        $scope.model.unvarnished
+      ]
+
+      $scope.start = (obj) ->
+        run = ->
+          log "发送设备#{obj.id}的数据: #{obj.value}"
+          mqtt.send(obj.id, obj.type, obj.value)
+          if obj.enabled then $timeout(run, 2000)
+
+        $timeout(run, 1)
+        obj.enabled = true
+
+      $scope.stop = (obj) ->
+        obj.enabled = false
+
+      $scope.$on 'log',  (event, str) ->
+        len = $scope.logs.unshift(str)
+        if len > 10 then $scope.logs.pop()
+        console.log str
+
+      for device in $scope.devices
+        device.enabled = false
+
+      log "注册所有设备"
+      for device in $scope.devices
+        mqtt.register device.id
   ])
-

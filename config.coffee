@@ -1,7 +1,10 @@
 exports.config =
   # See docs at http://brunch.readthedocs.org/en/latest/config.html.
   conventions:
-    assets:  /^app[\/\\]+assets[\/\\]+/
+    assets: [
+      /^app[\/\\]+assets[\/\\]+/
+      /^bower_components[\/\\]+fontawesome[\/\\]+fonts[\/\\]/
+    ]
     ignored: /^(bower_components[\/\\]+bootstrap-less(-themes)?|app[\/\\]+styles[\/\\]+overrides|(.*?[\/\\]+)?[_]\w*)/
   modules:
     definition: false
