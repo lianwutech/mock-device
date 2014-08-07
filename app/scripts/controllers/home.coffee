@@ -6,8 +6,9 @@ angular.module('app.controllers')
     '$state'
     '$localStorage'
     'mqtt'
+    'devtool'
 
-    ($scope, $timeout, $state, $localStorage, mqtt) ->
+    ($scope, $timeout, $state, $localStorage, mqtt, devtool) ->
       log = (str) ->
         tm = new Date()
         str = "#{tm.toTimeString()}\t#{str}"

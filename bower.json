@@ -21,7 +21,8 @@
     "components-underscore": "~1.5.2",
     "angular-ui-router": "~0.2.10",
     "ngstorage": "~0.3.0",
-    "fontawesome": "~4.1.0"
+    "fontawesome": "~4.1.0",
+    "keypress": "https://github.com/dmauro/Keypress.git#v2.0.3"
   },
   "overrides": {
     "bootstrap": {
