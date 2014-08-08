@@ -5,7 +5,7 @@
         温度传感器
       .panel-body
         .col-md-4
-          温度值：
+          span 温度值：
           input(ng-model="model.thermometer.value")
         .col-md-1
           button.btn.btn-success(ng-hide="model.thermometer.enabled", ng-click="start(model.thermometer)")
@@ -15,10 +15,13 @@
   .col-md-12
     .panel.panel-success
       .panel-heading
-        告警开关
+        span
+          告警开关(访问
+          a(href="www.lianwuyun.cn/dashboard")云平台
+          ，远程控制本开关)
       .panel-body
         .col-md-4
-          状态：{{model.alarm.value}}
+          span 状态：{{model.alarm.value}}
         .col-md-1
           button.btn.btn-success(ng-hide="model.alarm.enabled", ng-click="start(model.alarm)")
             i.fa.fa-play开始模拟
@@ -27,10 +30,10 @@
   .col-md-12
     .panel.panel-success
       .panel-heading
-        数据透传
+        span 数据透传
       .panel-body
         .col-md-4
-          数据：
+          span 数据：
           input(ng-model="model.unvarnished.value")
         .col-md-1
           button.btn.btn-success(ng-hide="model.unvarnished.enabled", ng-click="start(model.unvarnished)")
@@ -40,6 +43,9 @@
   .col-md-12
     .panel.panel-info
       .panel-heading
-        日志
+        span
+          日志(访问
+          a(href="www.lianwuyun.cn/dashboard")云平台
+          ，查看发送的数据)
       .panel-body
         p(ng-repeat="log in logs"){{log}}

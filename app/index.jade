@@ -20,11 +20,12 @@ html(lang='zh-CN')
   body
     .container-fluid
       .row
-        .col-md-12
+        .col-md-9
           p
-          //div(ng-include="'/partials/side-menu.html'")
+          div(ui-view)
+        .col-md-3
+          div(ng-include="'/partials/side-nav.html'")
 
-      div(ui-view)
 
     script.
       $(angular.bootstrap(document , ['app']))
