@@ -11,8 +11,11 @@ module.exports = function(grunt) {
         linux32: false,
         linux64: false
       },
-      src: './_public/**/*'
-    },
+      src: [
+        './_public/**/*',
+        './node_modules/mqtt/**/*'
+      ]
+    }
   });
 
   grunt.loadNpmTasks('grunt-node-webkit-builder');
