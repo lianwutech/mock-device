@@ -10,7 +10,7 @@
   },
   "scripts": {
     "compiler": "brunch watch --server",
-    "builder": "brunch watch -P",
+    "build": "brunch build",
     "test": "karma start test/karma.conf.js",
     "app": "nodewebkit _public",
     "deploy": "grunt"
